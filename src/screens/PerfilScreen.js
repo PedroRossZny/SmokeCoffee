@@ -63,9 +63,13 @@ export default function PerfilScreen({ navigation }) {
       <Text>Data de Nascimento: {formatDateForDisplay(usuario.dataNascimento)}</Text>
       <Text>Endereço: {usuario.endereco}</Text>
 
+      <TouchableOpacity style={[styles.button, { backgroundColor: '#1e90ff' }]} onPress={() => navigation.replace('Cardapio')}>
+        <Text style={styles.buttonText}>Voltar ao Cardápio</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('EditarPerfil', { usuario })}>
         <Text style={styles.buttonText}>Editar Perfil</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>   
 
       <TouchableOpacity style={styles.button} onPress={deslogar}>
         <Text style={styles.buttonText}>Sair</Text>
