@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import { ScrollView, Text, TextInput, TouchableOpacity } from 'react-native';
 import { styles } from '../styles/global';
+import { isValidDateDDMMYYYY, maskDateInput } from '../utils/formatters';
 
 export default function EditarPerfilScreen({ route, navigation }) {
   const { usuario } = route.params;
@@ -16,6 +17,11 @@ export default function EditarPerfilScreen({ route, navigation }) {
     const usuariosJSON = await AsyncStorage.getItem('usuarios');
     let usuarios = JSON.parse(usuariosJSON) || [];
     const index = usuarios.findIndex(u => u.email === usuario.email);
+
+    if (!isValidDateDDMMYYYY(dataNascimento)) {
+        alert('Data de nascimento inválida. Use DD/MM/AAAA');
+        return;
+    }
 
     if (index !== -1) {
       if (novaSenha || confirmarNovaSenha) {
@@ -45,7 +51,7 @@ export default function EditarPerfilScreen({ route, navigation }) {
       <Text style={styles.title}>Editar Perfil</Text>
 
       <TextInput style={styles.input} placeholder="Nome" value={nome} onChangeText={setNome} />
-      <TextInput style={styles.input} placeholder="Data de Nascimento" value={dataNascimento} onChangeText={setDataNascimento} />
+      <TextInput style={styles.input} placeholder="Data de Nascimento (DD/MM/AAAA)" value={dataNascimento} onChangeText={(t) => setDataNascimento(maskDateInput(t))} />
       <TextInput style={styles.input} placeholder="Endereço" value={endereco} onChangeText={setEndereco} />
 
       <Text style={{ marginTop: 20, fontWeight: 'bold' }}>Alterar Senha (opcional)</Text>

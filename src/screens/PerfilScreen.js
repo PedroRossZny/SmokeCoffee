@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/global';
+import { formatDateForDisplay } from '../utils/formatters';
 
 export default function PerfilScreen({ navigation }) {
   const [usuario, setUsuario] = useState(null);
@@ -59,7 +60,7 @@ export default function PerfilScreen({ navigation }) {
       <Text style={styles.title}>Perfil</Text>
       <Text>Nome: {usuario.nome}</Text>
       <Text>Email: {usuario.email}</Text>
-      <Text>Data de Nascimento: {usuario.dataNascimento}</Text>
+      <Text>Data de Nascimento: {formatDateForDisplay(usuario.dataNascimento)}</Text>
       <Text>Endereço: {usuario.endereco}</Text>
 
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('EditarPerfil', { usuario })}>

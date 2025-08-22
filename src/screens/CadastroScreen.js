@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/global';
+import { isValidDateDDMMYYYY, maskDateInput } from '../utils/formatters';
 
 export default function CadastroScreen({ navigation }) {
   const [nome, setNome] = useState('');
@@ -12,8 +13,21 @@ export default function CadastroScreen({ navigation }) {
 
   const criarConta = async () => {
     if (!nome || !email || !dataNascimento || !endereco || !senha) {
-      Alert.alert('Erro', 'Preencha todos os campos');
-      return;
+    Alert.alert('Erro', 'Preencha todos os campos');
+    return;
+    }
+    const emailOk = /\S+@\S+\.\S+/.test(email);
+    if (!emailOk) {
+    Alert.alert('Erro', 'Informe um e-mail válido');
+    return;
+    }
+    if (!isValidDateDDMMYYYY(dataNascimento)) {
+    Alert.alert('Erro', 'Data de nascimento inválida. Use DD/MM/AAAA');
+    return;
+    }
+    if (senha.length < 4) {
+    Alert.alert('Erro', 'A senha deve ter pelo menos 4 caracteres');
+    return;
     }
 
     try {
@@ -43,7 +57,7 @@ export default function CadastroScreen({ navigation }) {
       <Text style={styles.title}>Criar Conta</Text>
       <TextInput placeholder="Nome" style={styles.input} value={nome} onChangeText={setNome} />
       <TextInput placeholder="E-mail" style={styles.input} value={email} onChangeText={setEmail} />
-      <TextInput placeholder="Data de Nascimento" style={styles.input} value={dataNascimento} onChangeText={setDataNascimento} />
+      <TextInput placeholder="Data de Nascimento (DD/MM/AAAA)" style={styles.input} value={dataNascimento} onChangeText={(t) => setDataNascimento(maskDateInput(t))} />
       <TextInput placeholder="Endereço" style={styles.input} value={endereco} onChangeText={setEndereco} />
       <TextInput placeholder="Senha" style={styles.input} secureTextEntry value={senha} onChangeText={setSenha} />
 
