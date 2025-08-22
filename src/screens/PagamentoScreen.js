@@ -1,33 +1,70 @@
+// src/screens/PagamentoScreen.js
 import { useState } from 'react';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/global';
 
 export default function PagamentoScreen({ navigation }) {
-  const [formaPagamento, setFormaPagamento] = useState('');
+  // 'cartao' | 'pix' | null
+  const [formaPagamento, setFormaPagamento] = useState(null);
   const [numeroCartao, setNumeroCartao] = useState('');
   const [cvv, setCvv] = useState('');
   const [nomeTitular, setNomeTitular] = useState('');
 
   const realizarPagamento = () => {
+    if (!formaPagamento) {
+      Alert.alert('Atenção', 'Escolha Cartão ou Pix');
+      return;
+    }
+
+    if (formaPagamento === 'cartao') {
+      if (!numeroCartao || !cvv || !nomeTitular) {
+        Alert.alert('Atenção', 'Preencha os dados do cartão');
+        return;
+      }
+    }
+
     const idPedido = Math.floor(1000 + Math.random() * 9000);
     navigation.replace('Confirmacao', { pedidoId: idPedido });
   };
-
-  const isCartao = formaPagamento.toLowerCase().includes('cartão') || formaPagamento.toLowerCase().includes('cartao');
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Pagamento</Text>
 
       <Text style={styles.label}>Forma de Pagamento:</Text>
-      <TextInput
-        style={styles.input}
-        value={formaPagamento}
-        onChangeText={setFormaPagamento}
-        placeholder="Cartão / Pix"
-      />
+      <View style={{ flexDirection: 'row', marginBottom: 15 }}>
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              flex: 1,
+              backgroundColor: formaPagamento === 'cartao' ? '#4a148c' : '#6200ee',
+              marginRight: 8,
+              marginTop: 0, // evita espaçamento grande dentro da linha
+            },
+          ]}
+          onPress={() => setFormaPagamento('cartao')}
+        >
+          <Text style={styles.buttonText}>Cartão</Text>
+        </TouchableOpacity>
 
-      {isCartao && (
+        <TouchableOpacity
+          style={[
+            styles.button,
+            {
+              flex: 1,
+              backgroundColor: formaPagamento === 'pix' ? '#4a148c' : '#6200ee',
+              marginLeft: 8,
+              marginTop: 0,
+            },
+          ]}
+          onPress={() => setFormaPagamento('pix')}
+        >
+          <Text style={styles.buttonText}>Pix</Text>
+        </TouchableOpacity>
+      </View>
+
+      {formaPagamento === 'cartao' && (
         <>
           <Text style={styles.label}>Número do Cartão:</Text>
           <TextInput
@@ -55,6 +92,12 @@ export default function PagamentoScreen({ navigation }) {
             placeholder="Nome completo"
           />
         </>
+      )}
+
+      {formaPagamento === 'pix' && (
+        <Text style={{ marginBottom: 15 }}>
+          Você selecionou Pix. O QR será apresentado na confirmação.
+        </Text>
       )}
 
       <TouchableOpacity style={styles.button} onPress={realizarPagamento}>

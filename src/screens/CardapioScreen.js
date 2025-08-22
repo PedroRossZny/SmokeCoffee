@@ -90,9 +90,10 @@ export default function CardapioScreen({ navigation }) {
 
       <Text style={styles.total}>Total: R$ {total.toFixed(2)}</Text>
 
-      <TouchableOpacity style={styles.finalizarButton} onPress={() => navigation.navigate('Pagamento')}>
+      <TouchableOpacity style={styles.finalizarButton} onPress={() => { const temItens = Object.values(carrinho).length > 0; if (!temItens) { Alert.alert('Carrinho vazio', 'Adicione itens antes de finalizar o pedido.'); return; } navigation.navigate('Pagamento'); }}>
         <Text style={styles.buttonText}>Finalizar Pedido</Text>
       </TouchableOpacity>
+
 
       <TouchableOpacity style={styles.logoutButton} onPress={() => navigation.replace('Login')}>
         <Text style={styles.buttonText}>Trocar de Conta</Text>
