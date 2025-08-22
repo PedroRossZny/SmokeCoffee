@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  // gerais
   background: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)', padding: 30, borderRadius: 15, alignItems: 'center' },
   splashTitle: { fontSize: 32, fontWeight: 'bold', color: '#fff', marginBottom: 10 },
@@ -13,14 +12,12 @@ export const styles = StyleSheet.create({
   title: { marginBlockStart: 40, fontSize: 24, fontWeight: 'bold', marginBottom: 20, textAlign: 'center' },
   subtitle: { fontSize: 18 },
 
-  // inputs/botões
   input: { borderWidth: 1, borderColor: '#aaa', padding: 15, marginBottom: 5, borderRadius: 10 },
   showPassword: { marginBlock: 1, marginLeft: 15, color: '#6200ee' },
 
   button: { backgroundColor: '#6200ee', padding: 15, borderRadius: 5, alignItems: 'center', marginTop: 30 },
   buttonText: { color: '#fff', fontWeight: 'bold' },
 
-  // cardápio
   card: { backgroundColor: '#eee', padding: 15, borderRadius: 8, marginBottom: 10 },
   image: { width: 50, height: 50, marginBottom: 5 },
   productName: { fontWeight: 'bold', fontSize: 16 },

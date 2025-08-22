@@ -1,10 +1,8 @@
-// src/screens/PagamentoScreen.js
 import { useState } from 'react';
 import { Alert, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from '../styles/global';
 
 export default function PagamentoScreen({ navigation }) {
-  // 'cartao' | 'pix' | null
   const [formaPagamento, setFormaPagamento] = useState(null);
   const [numeroCartao, setNumeroCartao] = useState('');
   const [cvv, setCvv] = useState('');
@@ -40,7 +38,7 @@ export default function PagamentoScreen({ navigation }) {
               flex: 1,
               backgroundColor: formaPagamento === 'cartao' ? '#4a148c' : '#6200ee',
               marginRight: 8,
-              marginTop: 0, // evita espaçamento grande dentro da linha
+              marginTop: 0, 
             },
           ]}
           onPress={() => setFormaPagamento('cartao')}

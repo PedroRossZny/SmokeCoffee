@@ -65,9 +65,6 @@ export default function CadastroScreen({ navigation }) {
         <Text style={styles.buttonText}>Criar Conta</Text>
       </TouchableOpacity>
 
-      {/* TODO: No seu código original havia um erro aqui:
-          <TouchableOpacity onPress={criarConta}> ... "Cancelar" ... navigation.replace('Login');
-         Troquei por um botão "Cancelar" correto, apenas para não quebrar o app. */}
       <TouchableOpacity
         style={[styles.button, { backgroundColor: '#777' }]}
         onPress={() => navigation.replace('Login')}
