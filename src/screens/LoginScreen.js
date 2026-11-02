@@ -8,24 +8,6 @@ export default function LoginScreen({ navigation }) {
   const [senha, setSenha] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const fazerLogin = async () => {
-    try {
-      const usuariosJSON = await AsyncStorage.getItem('usuarios');
-      const usuarios = usuariosJSON ? JSON.parse(usuariosJSON) : [];
-      const usuario = usuarios.find(u => u.email === email && u.senha === senha);
-
-      if (usuario) {
-        await AsyncStorage.setItem('usuarioLogado', JSON.stringify(usuario));
-        navigation.replace('Cardapio');
-      } else {
-        Alert.alert('Erro', 'E-mail ou senha incorretos');
-      }
-    } catch (error) {
-      console.log(error);
-      Alert.alert('Erro', 'Falha ao tentar logar');
-    }
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>

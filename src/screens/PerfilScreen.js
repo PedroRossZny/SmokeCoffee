@@ -28,7 +28,7 @@ export default function PerfilScreen({ navigation }) {
         }
 
         setUsuario(usuarioLogado);
-      } catch (e) {
+      } catch {
         alert("Erro ao carregar o perfil.");
       } finally {
         setCarregando(false);
