@@ -10,6 +10,22 @@ The app interface is in Brazilian Portuguese.
 ![React Navigation](https://img.shields.io/badge/React_Navigation-7-6B52AE?logo=react&logoColor=white)
 ![AsyncStorage](https://img.shields.io/badge/AsyncStorage-2-1A1F36)
 
+## Screenshots
+
+Captured from the web build in a phone-sized window (390x844).
+
+| Menu | Cart total | Card payment | Order confirmation |
+|---|---|---|---|
+| <img src="docs/screenshots/menu.png" alt="Menu screen with espresso, cappuccino and frappuccino cards, each with add and remove buttons; espresso shows 1 in the cart and cappuccino shows 2" width="200"> | <img src="docs/screenshots/cart-total.png" alt="Bottom of the menu with pão de queijo (1 in the cart), sandwich and cookie cards, the total of R$ 24.00 and the Finalizar Pedido, Trocar de Conta and Perfil buttons" width="200"> | <img src="docs/screenshots/payment.png" alt="Payment screen with Cartão selected and the card number, CVV and cardholder name filled in above the Pagar button" width="200"> | <img src="docs/screenshots/confirmation.png" alt="Pagamento Confirmado screen showing order number 5384 and a button to go back to the menu" width="200"> |
+
+| Sign-up | Login | Profile |
+|---|---|---|
+| <img src="docs/screenshots/signup.png" alt="Sign-up form filled in with name, email, date of birth 10/05/1998, address and a hidden password" width="200"> | <img src="docs/screenshots/login.png" alt="Login screen with email and hidden password filled in, a Mostrar link to reveal the password and the Entrar and Criar Conta buttons" width="200"> | <img src="docs/screenshots/profile.png" alt="Profile screen listing name, email, date of birth and address, with buttons to go back to the menu, edit the profile and log out" width="200"> |
+
+Ordering flow: login, adding items to the cart, Pix payment and the order number.
+
+<img src="docs/screenshots/order-flow.gif" alt="Animation: the user logs in, adds two cappuccinos and an espresso, scrolls to add a cookie, taps Finalizar Pedido, picks Pix, taps Pagar and gets order number 4051" width="320">
+
 ## About
 
 I built Smoke Coffee in August 2025 to practice a complete ordering flow in React Native: stack navigation, form validation, data saved on the device and local notifications. It is a study project, so payment and authentication are simulated (see [Limitations](#limitations)).
